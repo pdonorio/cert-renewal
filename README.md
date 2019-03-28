@@ -1,7 +1,7 @@
 
 # Generate certificates for Pushpin
 
-## instructions
+## instructions
 
 How to from shell
 
@@ -26,14 +26,16 @@ docker-compose run --rm letsencrypt
 #############
 # 3. push certificates to s3 bucket
 sudo chown -R $UID ./certificates
+docker-compose run --rm pusher
+
+#############
+# 4. remove images 
+docker-compose down --rmi all --remove-orphans
 
 #############
 # 4. deploy new pushpin container
-# TODO
-# MANUAL? RESTART?
-
-#############
-# 5. remove images 
-# TODO
+# MANUAL: via gitlab
+# container=$(docker ps | grep pushpin | awk '{print $1}')
+# docker restart $container
 
 ```

@@ -6,12 +6,12 @@ services:
   letsencrypt:
     image: asamoshkin/letsencrypt-certgen
     command: issue
+    network_mode: host  # doesn't work without
     volumes:
       - ./$HOST_CERT_DIR:/var/ssl
     ports:
       - "80:80"
     environment:
-      # LETSENCRYPT_EMAIL: ${EMAIL}
       DOMAINS: ${DOMAIN}
 
   pusher:
