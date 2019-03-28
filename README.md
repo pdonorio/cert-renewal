@@ -25,7 +25,7 @@ docker-compose run --rm letsencrypt
 
 #############
 # 3. push certificates to s3 bucket
-sudo chown -R $UID /var/ssl/*
+sudo chown -R $UID ./certificates
 
 #############
 # 4. deploy new pushpin container

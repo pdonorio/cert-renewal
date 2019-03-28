@@ -22,7 +22,7 @@ services:
     command: /scripts/push.py
     working_dir: /data
     volumes:
-      - ./$HOST_CERT_DIR:/data
+      - ./$HOST_CERT_DIR/$DOMAIN:/data
       - ./scripts:/scripts
     environment:
       APP_ENV: ${ENVIRONMENT}
