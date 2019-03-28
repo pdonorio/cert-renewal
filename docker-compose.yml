@@ -1,19 +1,28 @@
 
-version: '3.7'
-# volumes:
-#   mongodata:
-#     driver: local
-# networks:
-#   db_net:
+version: '3.3'
 
 services:
+
   letsencrypt:
-    image: blacklabelops/letsencrypt
+    image: asamoshkin/letsencrypt-certgen
+    command: issue
     volumes:
-      - ./certificates:/etc/letsencrypt
+      - ./$HOST_CERT_DIR:/var/ssl
     ports:
       - "80:80"
     environment:
-      LETSENCRYPT_HTTPS_ENABLED: "false"
-      LETSENCRYPT_EMAIL: ${EMAIL}
-      LETSENCRYPT_DOMAIN1: ${DOMAIN}
+      # LETSENCRYPT_EMAIL: ${EMAIL}
+      DOMAINS: ${DOMAIN}
+
+  pusher:
+    build:
+      context: ./builds/s3push
+      args:
+        PYTHON_RELEASE: ${PYTHON_RELEASE}
+    command: /scripts/push.py
+    working_dir: /data
+    volumes:
+      - ./$HOST_CERT_DIR:/data
+      - ./scripts:/scripts
+    environment:
+      APP_ENV: ${ENVIRONMENT}
