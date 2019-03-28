@@ -1,0 +1,19 @@
+
+version: '3.7'
+# volumes:
+#   mongodata:
+#     driver: local
+# networks:
+#   db_net:
+
+services:
+  letsencrypt:
+    image: blacklabelops/letsencrypt
+    volumes:
+      - ./certificates:/etc/letsencrypt
+    ports:
+      - "80:80"
+    environment:
+      LETSENCRYPT_HTTPS_ENABLED: "false"
+      LETSENCRYPT_EMAIL: ${EMAIL}
+      LETSENCRYPT_DOMAIN1: ${DOMAIN}
