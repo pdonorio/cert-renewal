@@ -4,6 +4,7 @@ version: '3.3'
 services:
 
   letsencrypt:
+    # src: http://j.mp/2YBiL0n
     image: asamoshkin/letsencrypt-certgen
     command: issue
     network_mode: host  # doesn't work without
@@ -13,6 +14,7 @@ services:
       - "80:80"
     environment:
       DOMAINS: ${DOMAIN}
+      STAGING: 0  # you can debug here if you want
 
   pusher:
     build:
