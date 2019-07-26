@@ -40,9 +40,8 @@ docker-compose run --rm pusher
 docker-compose down --rmi all --remove-orphans
 
 #############
-# 5. deploy new pushpin container
-# MANUAL: via gitlab
-# container=$(docker ps | grep pushpin | awk '{print $1}')
-# docker restart $container
+# 5. redeploy new pushpin host, which will download certs from S3
+# MANUAL: via AWS termination/recreation
 
+# NOTE: elastic IP problem, in case you need to manually fix on Route53
 ```
