@@ -1,9 +1,6 @@
-
 # Generate certificates for Pushpin
 
 ## instructions
-
-How to from shell
 
 ```bash
 
@@ -40,9 +37,17 @@ docker-compose run --rm pusher
 docker-compose down --rmi all --remove-orphans
 
 #############
-# 5. deploy new pushpin container
-# MANUAL: via gitlab
-# container=$(docker ps | grep pushpin | awk '{print $1}')
-# docker restart $container
+# 5. restart aws pushpin
+
+## inside host with credentials
+bash
+echo setup \
+    && pip3 install --upgrade -r dev-requirements.txt \
+    && set -a && source .env && set +a \
+    && echo ready
+./scripts/restart.py
+
+#############
+# THE END
 
 ```
