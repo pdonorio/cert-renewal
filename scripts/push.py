@@ -2,6 +2,8 @@
 
 import os
 import boto3
+# working instructions for S3 upload/download with python at:
+# https://qiita.com/hengsokvisal/items/329924dd9e3f65dd48e7
 from glob import glob
 
 pem_type = 'rsa'
