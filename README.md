@@ -1,9 +1,6 @@
-
 # Generate certificates for Pushpin
 
 ## instructions
-
-How to from shell
 
 ```bash
 
@@ -40,8 +37,17 @@ docker-compose run --rm pusher
 docker-compose down --rmi all --remove-orphans
 
 #############
-# 5. redeploy new pushpin host, which will download certs from S3
-# MANUAL: via AWS termination/recreation
+# 5. restart aws pushpin
 
-# NOTE: elastic IP problem, in case you need to manually fix on Route53
+## inside host with credentials
+bash
+echo setup \
+    && pip3 install --upgrade -r dev-requirements.txt \
+    && set -a && source .env && set +a \
+    && echo ready
+./scripts/restart.py
+
+#############
+# THE END
+
 ```

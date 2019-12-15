@@ -4,10 +4,15 @@ version: '3.3'
 services:
 
   letsencrypt:
+    # image: asamoshkin/letsencrypt-certgen
     # src: http://j.mp/2YBiL0n
-    image: asamoshkin/letsencrypt-certgen
+    build:
+      context: builds/letsencrypt
+      args:
+        CERTBOT_RELEASE: ${CERTBOT_RELEASE}
+        ACMESH_RELEASE: ${ACMESH_RELEASE}
     command: issue
-    network_mode: host  # doesn't work without
+    network_mode: host  # NOTE: doesn't work without
     volumes:
       - ./$HOST_CERT_DIR:/var/ssl
     ports:

@@ -1,0 +1,13 @@
+###################
+# SET THIS UP
+ENVIRONMENT=dev
+# ENVIRONMENT=prod
+DOMAIN=
+ELASTIC_IP=
+###################
+
+HOST_CERT_DIR=certificates
+PYTHON_RELEASE=3.7.5
+#PYTHON_RELEASE=3.8.0?
+CERTBOT_RELEASE=1.0.0
+ACMESH_RELEASE=2.8.3
