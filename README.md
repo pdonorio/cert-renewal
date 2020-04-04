@@ -42,7 +42,7 @@ docker-compose down --rmi all --remove-orphans
 ## inside host with credentials
 bash
 echo setup \
-    && pip3 install --upgrade -r dev-requirements.txt \
+    && python3 -m pip install --upgrade -r dev-requirements.txt \
     && set -a && source .env && set +a \
     && echo ready
 ./scripts/restart.py
